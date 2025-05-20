@@ -10,7 +10,8 @@ The issue with our [build method](https://docs.redpesk.bzh/docs/en/master/redpes
 
 So even our work with `mkosi` has not been released yet, I chose mkosi because:
 - the redpesk rootfs must be easily customizable (scripts, packages...)
-- the build can be done on my Linux host (Fedora 42 + **rootless**)
+- the build can be done on my Linux host (Fedora 42 + rootless or with root privileges)
+- the build method must be fast as possible (more than redpesk Factory + Anaconda/kickstarts)
 - the output must be a cpio archive (and compress method must be a standard for U-Boot/Kernel)
 
 ## What is mkosi?
@@ -34,8 +35,7 @@ or directly online on mkosi github
 ### NXP S32G2 (my target is a [aarch64 architecture](https://docs.redpesk.bzh/docs/en/master/download/boards/docs/boards/nxp-s32g2.html) so it could be another one)
 
 ```bash
-mkosi \ 
---debug --debug-workspace \
+sudo mkosi --debug --debug-workspace \
 --force \
 -I mkosi-s32g2.conf \
 -E REDPESK_DISTRO=batz-2.0-update \
@@ -45,6 +45,8 @@ mkosi \
 
 Please note I had issues with `dnf5` that's why I moved the environment to `dnf4`.
 This concerned some specific options of `mkosi` INI configuration files.
+
+This build is not rootless because of SMACK labelling.
 
 ## Organisation
 
@@ -68,10 +70,6 @@ repart.d documentation to describe partitions:
 [https://www.freedesktop.org/software/systemd/man/249/repart.d.html](https://www.freedesktop.org/software/systemd/man/249/repart.d.html)
 
 There are examples in sub-directories of repart.d/
-
-There is also an issue with fstab generation: see Troubleshooting section,
-there is a fix in rp-mkosi, to activate it set the environnment variable
-`Environment=REDPESK_FIX_FSTAB=1`.
 
 ## Troubleshooting
 
