@@ -63,14 +63,6 @@ many of then can be activated passing profiles
 * `repart.d` the directory of snippet of partitions for systemd-repart
 * `scripts` the directory of scripts executed during the image build
 
-## systemd-repart
-
-The image and partitions creation is done with systemd-repart, follow the
-repart.d documentation to describe partitions:
-[https://www.freedesktop.org/software/systemd/man/249/repart.d.html](https://www.freedesktop.org/software/systemd/man/249/repart.d.html)
-
-There are examples in sub-directories of repart.d/
-
 ## Troubleshooting
 
 ### *Dynamic* Profiles/Include
