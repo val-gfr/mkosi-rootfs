@@ -43,7 +43,7 @@ sudo mkosi --debug --debug-workspace \
 --environment=MKOSI_DNF=dnf4
 ```
 
-Please note I had issues with `dnf5` that's why I moved the environment to `dnf4`.
+Please note I had issues with `dnf5` (on Fedora 42) that's why I moved the environment to `dnf4`.
 This concerned some specific options of `mkosi` INI configuration files.
 
 This build is not rootless because of SMACK labelling.
