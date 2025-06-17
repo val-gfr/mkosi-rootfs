@@ -104,3 +104,14 @@ Profiles=afb
 In this example, the two files afb-smack and afb-selinux are included
 but as it is written in the `TriggerMatch` of afb-selinux,
 it needs the afb and the selinux profile to be triggered.
+
+### For development
+
+```bash
+sudo mkosi --debug --debug-workspace \
+--force \
+-I mkosi-s32g2.conf \
+-E REDPESK_DISTRO=batz-2.0-update \
+--profile smack,minimal,localrepo,rpm-manual,dev \
+--environment=MKOSI_DNF=dnf4
+```
