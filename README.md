@@ -107,11 +107,13 @@ it needs the afb and the selinux profile to be triggered.
 
 ### For development
 
+The following command includes development package:
+
 ```bash
 sudo mkosi --debug --debug-workspace \
 --force \
 -I mkosi-s32g2.conf \
 -E REDPESK_DISTRO=batz-2.0-update \
---profile smack,minimal,localrepo,rpm-manual,dev \
+--profile smack,minimal,localrepo,dev \
 --environment=MKOSI_DNF=dnf4
 ```
