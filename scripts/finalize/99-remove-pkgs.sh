@@ -1,8 +1,11 @@
 #!/bin/bash
 
-## remove packages which are not needed here
+## remove redpesk packages which are not needed
 dnf --installroot="$BUILDROOT" remove -y \
-    acl \
-    libacl
+    redpesk-repos-config \
+    redpesk-repos \
+    redpesk-config \
+    redpesk-gpg-keys \
+    redpesk-release
 
-dnf --installroot="$BUILDROOT" autoremove -y
+exit 0
