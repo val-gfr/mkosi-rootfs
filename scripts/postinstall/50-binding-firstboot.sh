@@ -18,6 +18,3 @@ dnf_firstboot clean all
 
 # Since first boot RPMs are not installed in the image, they are not listed in manifest.log
 rpm -qp ${RPMS_DIR}/*.rpm > $OUTPUTDIR/manifest-firstboot.log
-
-# Build image date in /etc/os-release
-echo "BUILD_DATE=\"$(TZ='UTC+2' date '+%Y-%m-%d %H:%M:%S')\"" >> $BUILDROOT/etc/os-release
