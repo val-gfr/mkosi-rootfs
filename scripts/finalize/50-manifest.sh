@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rpm -qa --root $BUILDROOT > $OUTPUTDIR/manifest.log
+rpm -qa --root $BUILDROOT | sort > $OUTPUTDIR/manifest.log
