@@ -8,6 +8,10 @@ dnf --installroot="$BUILDROOT" install -y \
 	setup \
 	shadow-utils
 
+## install red-pak (without libdnf5)
+dnf --installroot="$BUILDROOT" install -y \
+	redpak-core
+
 # -- DEVELOPMENT PACKAGES -- #
 [ -z "$DEV_PKGS" ] &&
 	echo "-- /!\ -- Development packages are not installed into this image -- /!\ --" &&
