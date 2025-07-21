@@ -16,12 +16,11 @@ cat << EOF > $BUILDROOT/usr/lib/systemd/system/serial-getty@.service
 #  (at your option) any later version.
 
 [Unit]
-Description=Serial Getty on %I
+Description=Serial Getty on LF0
 Documentation=man:agetty(8) man:systemd-getty-generator(8)
 Documentation=http://0pointer.de/blog/projects/serial-console.html
-BindsTo=dev-%i.device
+# Removed BindsTo and After=dev-%i.device
 After=systemd-user-sessions.service getty-pre.target
-After=rc-local.service
 
 # If additional gettys are spawned during boot then we should make
 # sure that this is synchronized before getty.target, even though
