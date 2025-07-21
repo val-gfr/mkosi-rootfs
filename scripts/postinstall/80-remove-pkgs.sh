@@ -9,5 +9,7 @@
 #     redpesk-release
 
 ## remove others packages
+dnf --installroot="$BUILDROOT" remove -y \
+      kbd
 
 exit 0
