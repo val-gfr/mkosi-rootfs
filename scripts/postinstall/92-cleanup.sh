@@ -11,12 +11,21 @@ rm -f $BUILDROOT/var/lib/rpm/__db*
 # Build image date in /etc/os-release
 echo "BUILD_DATE=\"$(TZ='UTC+2' date '+%Y-%m-%d %H:%M:%S')\"" >> $BUILDROOT/etc/os-release
 
-# Replace systemd init by custom one
+# Extract buildroot SMACK labels (install the required package)
+if [ -f /usr/bin/sec-xattr-extract ]; then
+    /usr/bin/sec-xattr-extract $BUILDROOT/usr/smack_labels_rootfs $BUILDROOT/
+else
+    echo "sec-xattr-extract is NOT installed, please install it to be able to extract SMACK labels!"
+    exit 1
+fi
+
+# Replace systemd init by custom one (smack labelling)
 unlink $BUILDROOT/init
 
 cat << EOF > $BUILDROOT/init
 #!/bin/sh
-/usr/bin/echo "Custom boot test"
+/usr/bin/echo "Restoring SMACK labels..."
+/usr/bin/sec-xattr-restore
 exec /usr/lib/systemd/systemd
 EOF
 
@@ -29,3 +38,5 @@ chmod +x $BUILDROOT/init
 
 # remove random seed, the newly installed instance should make it's own
 rm -f $BUILDROOT/var/lib/systemd/random-seed
+
+exit 0
