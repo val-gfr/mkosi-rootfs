@@ -12,12 +12,14 @@ rm -f $BUILDROOT/var/lib/rpm/__db*
 echo "BUILD_DATE=\"$(TZ='UTC+2' date '+%Y-%m-%d %H:%M:%S')\"" >> $BUILDROOT/etc/os-release
 
 # Extract buildroot SMACK labels (install the required package)
-if [ -f /usr/bin/sec-xattr-extract ]; then
-    /usr/bin/sec-xattr-extract $BUILDROOT/usr/smack_labels_rootfs $BUILDROOT/
-else
-    echo "sec-xattr-extract is NOT installed, please install it to be able to extract SMACK labels!"
-    exit 1
-fi
+#if [ -f /usr/bin/sec-xattr-extract ]; then
+#    /usr/bin/sec-xattr-extract $BUILDROOT/usr/smack_labels_rootfs $BUILDROOT/
+#else
+#    echo "sec-xattr-extract is NOT installed, please install it to be able to extract SMACK labels!"
+#    exit 1
+#fi
+# This is currently coming from the S32G2 target so only copy the xattr labels file
+cp ./smack_labels_rootfs $BUILDROOT/usr/smack_labels_rootfs
 
 # Replace systemd init by custom one (smack labelling)
 unlink $BUILDROOT/init
