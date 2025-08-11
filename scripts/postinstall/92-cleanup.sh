@@ -27,7 +27,7 @@ unlink $BUILDROOT/init
 cat << EOF > $BUILDROOT/init
 #!/bin/sh
 /usr/bin/echo "Restoring SMACK labels..."
-/usr/bin/sec-xattr-restore /usr/smack_labels_rootfs / -d
+/usr/bin/sec-xattr-restore /usr/smack_labels_rootfs /
 exec /usr/lib/systemd/systemd
 EOF
 
