@@ -22,12 +22,10 @@ echo "BUILD_DATE=\"$(TZ='UTC+2' date '+%Y-%m-%d %H:%M:%S')\"" >> $BUILDROOT/etc/
 cp ./scripts/postinstall/smack_labels_rootfs $BUILDROOT/usr/smack_labels_rootfs
 
 # Replace systemd init by custom one (smack labelling)
-unlink $BUILDROOT/init
-
 cat << EOF > $BUILDROOT/init
 #!/bin/sh
 /usr/bin/echo "Restoring SMACK labels..."
-/usr/bin/sec-xattr-restore /usr/smack_labels_rootfs /
+/usr/bin/sec-xattr-restore -d /usr/smack_labels_rootfs /
 exec /usr/lib/systemd/systemd
 EOF
 
