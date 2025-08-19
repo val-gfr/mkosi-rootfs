@@ -45,13 +45,12 @@ gpgcheck=0
 name=RedPesk Baseos
 baseurl=https://download.redpesk.bzh/redpesk-lts/$REDPESK_DISTRO/packages/baseos/\$basearch/os/
 enabled=1
-priority=98
+priority=2
 metadata_expire=3h
 repo_gpgcheck=0
 type=rpm
 module_hotfixes=1
 gpgcheck=0
-
 
 [redpesk-middleware]
 name=RedPesk middle
@@ -65,5 +64,17 @@ module_hotfixes=1
 gpgcheck=0
 EOF
 
+cat << EOF > $destrepo/redpesk-smack_a9d2c599--redpesk-lts-batz-2.0-update-build.repo
+# external repo to have redpesk_smack experimental project (lightweight)
+[redpesk-smack_a9d2c599--redpesk-lts-batz-2.0-update-build]
+name=redpesk-smack_a9d2c599--redpesk-lts-batz-2.0-update-build
+baseurl=https://aquarium-app.redpesk.bzh/kbuild/repos//redpesk-smack_a9d2c599--redpesk-lts-batz-2.0-update-build/latest/\$basearch?token=69dcf1e8-122f-4eea-8276-ab955fdf3e0a_f2311232-7af6-4ff6-b9d5-c84e703877a2
+priority=1
+module_hotfixes=1
+skip_if_unavailable=False
+metadata_expire=3h
+repo_gpgcheck=0
+enabled=1
+EOF
 
 echo "$jsonconf" | jq -c '.SandboxTrees+=[{"Source": '"\"$buildrepo\""', "Target": null}]'
