@@ -12,4 +12,7 @@
 dnf --installroot="$BUILDROOT" remove -y \
       kbd
 
+dnf --installroot="$BUILDROOT" remove --setopt=clean_requirements_on_remove=0 \
+      policycoreutils
+
 exit 0
