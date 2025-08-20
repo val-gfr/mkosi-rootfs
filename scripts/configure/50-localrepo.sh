@@ -51,6 +51,7 @@ repo_gpgcheck=0
 type=rpm
 module_hotfixes=1
 gpgcheck=0
+exclude=pam*,shadow-utils*,passwd*
 
 [redpesk-middleware]
 name=RedPesk middle
