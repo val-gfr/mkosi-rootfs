@@ -14,6 +14,10 @@ dnf --installroot="$BUILDROOT" install -y \
 dnf --installroot="$BUILDROOT" install -y \
 	redpak-core
 
+## external package ## TODO curl error
+dnf --installroot="$BUILDROOT" install -y \
+	https://aquarium-app.redpesk.bzh/kbuild/work/tasks/8726/118726/libmicrohttpd-0.9.72-4.redpesk.smack_a9d2c599.rpbatz.aarch64.rpm 
+
 # -- DEVELOPMENT PACKAGES -- #
 [ -z "$DEV_PKGS" ] &&
 	echo "-- /!\ -- Development packages are not installed into this image -- /!\ --" &&
