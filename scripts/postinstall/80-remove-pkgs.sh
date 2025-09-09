@@ -8,11 +8,16 @@
 #     redpesk-gpg-keys \
 #     redpesk-release
 
-## remove others packages
+## remove others packages and their dependancies
 dnf --installroot="$BUILDROOT" remove -y \
       kbd
 
-dnf --installroot="$BUILDROOT" remove --setopt=clean_requirements_on_remove=0 \
+## only remove policycoreutils
+dnf --installroot="$BUILDROOT" remove -y --setopt=clean_requirements_on_remove=0 \
       policycoreutils
+
+## only remove alternatives
+dnf --installroot="$BUILDROOT" remove -y --setopt=clean_requirements_on_remove=0 \
+      libselinux-utils
 
 exit 0
