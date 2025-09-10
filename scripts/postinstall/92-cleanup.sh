@@ -40,6 +40,11 @@ for pam_file in afm-user-session login remote systemd-user; do
     sed -i '/pam_selinux.so/ s/^#*/#/' "$BUILDROOT/etc/pam.d/$pam_file"
 done
 
+# Delete unneeded documentation, manpages, licenses, etc
+for dir_remove in bash-completion doc info licenses man zoneinfo ; do
+    rm -rf "$BUILDROOT/usr/share/$dir_remove"
+done
+
 # setup systemd to boot to the right runlevel
 #echo -n "Setting default runlevel to multiuser text mode"
 #rm -f $BUILDROOT/etc/systemd/system/default.target
