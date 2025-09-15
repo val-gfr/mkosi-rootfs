@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# systemd-networkd configuration (DHCP eth0)
-cat << EOF > $BUILDROOT/etc/systemd/network/01-eth0.network
-[Match]
-Name=eth0
-
-[Network]
-DHCP=ipv4
-EOF
-
 # Dropbear default configuration (root/root port 22 -> to change later)
 cat << EOF > $BUILDROOT/etc/systemd/system/dropbear.service
 [Unit]
