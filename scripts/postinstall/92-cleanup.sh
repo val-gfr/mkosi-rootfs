@@ -25,16 +25,6 @@ rm -rf $BUILDROOT/var/cache
 # This is currently coming from the S32G2 target so only copy the xattr labels file
 cp ./scripts/postinstall/smack_labels_rootfs $BUILDROOT/usr/smack_labels_rootfs
 
-# Replace systemd init by custom one (smack labelling)
-cat << EOF > $BUILDROOT/init
-#!/bin/sh
-/usr/bin/echo "Restoring SMACK labels..."
-/usr/bin/sec-xattr-restore -d /usr/smack_labels_rootfs /
-exec /usr/lib/systemd/systemd
-EOF
-
-chmod +x $BUILDROOT/init
-
 # Remove all SELinux modules than PAM requires (not here in SMACK image)
 for pam_file in afm-user-session login remote systemd-user; do
     sed -i '/pam_selinux.so/ s/^#*/#/' "$BUILDROOT/etc/pam.d/$pam_file"
