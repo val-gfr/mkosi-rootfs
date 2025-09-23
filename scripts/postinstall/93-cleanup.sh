@@ -40,6 +40,9 @@ done
 #rm -f $BUILDROOT/etc/systemd/system/default.target
 #ln -s $BUILDROOT/lib/systemd/system/multi-user.target $BUILDROOT/etc/systemd/system/default.target
 
+# Remove modprobe modules which are no longer here
+rm -f $BUILDROOT/usr/lib/systemd/system/modprobe*
+
 # remove random seed, the newly installed instance should make it's own
 rm -f $BUILDROOT/var/lib/systemd/random-seed
 
