@@ -14,6 +14,10 @@ dnf --installroot="$BUILDROOT" install -y \
 dnf --installroot="$BUILDROOT" install -y \
 	redpak-core
 
+## install afb-app-manager-users
+dnf --installroot="$BUILDROOT" install -y \
+	afb-app-manager-users
+
 # -- DEVELOPMENT PACKAGES -- #
 [ -z "$DEV_PKGS" ] &&
 	echo "-- /!\ -- Development packages are not installed into this image -- /!\ --" &&
