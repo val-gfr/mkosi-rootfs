@@ -43,6 +43,10 @@ done
 # Remove modprobe modules which are no longer here
 rm -f $BUILDROOT/usr/lib/systemd/system/modprobe*
 
+# Remove useless systemd services
+rm -f $BUILDROOT/usr/lib/systemd/system/systemd-firstboot.service
+rm -f $BUILDROOT/usr/lib/systemd/system/systemd-logind.service
+
 # remove random seed, the newly installed instance should make it's own
 rm -f $BUILDROOT/var/lib/systemd/random-seed
 
