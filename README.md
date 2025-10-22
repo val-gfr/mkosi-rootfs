@@ -39,7 +39,7 @@ mkosi --debug --debug-workspace \
 --force \
 -I mkosi-s32g2.conf \
 -E REDPESK_DISTRO=batz-2.0-update \
---profile smack,minimal,localrepo \
+--profile smack,minimal,localrepo,afb \
 --environment=MKOSI_DNF=dnf4
 ```
 
@@ -114,6 +114,6 @@ mkosi --debug --debug-workspace \
 --force \
 -I mkosi-s32g2.conf \
 -E REDPESK_DISTRO=batz-2.0-update \
---profile smack,minimal,localrepo,dev \
+--profile smack,minimal,localrepo,afb,dev \
 --environment=MKOSI_DNF=dnf4
 ```
