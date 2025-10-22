@@ -35,7 +35,7 @@ or directly online on mkosi github
 ### NXP S32G2 (my target is a [aarch64 architecture](https://docs.redpesk.bzh/docs/en/master/download/boards/docs/boards/nxp-s32g2.html) so it could be another one)
 
 ```bash
-sudo mkosi --debug --debug-workspace \
+mkosi --debug --debug-workspace \
 --force \
 -I mkosi-s32g2.conf \
 -E REDPESK_DISTRO=batz-2.0-update \
@@ -46,7 +46,7 @@ sudo mkosi --debug --debug-workspace \
 Please note I had issues with `dnf5` (on Fedora 42) that's why I moved the environment to `dnf4`.
 This concerned some specific options of `mkosi` INI configuration files.
 
-This build is not rootless because of SMACK labelling.
+This build is entirely rootless.
 
 ## Organisation
 
@@ -110,7 +110,7 @@ it needs the afb and the selinux profile to be triggered.
 The following command includes development package:
 
 ```bash
-sudo mkosi --debug --debug-workspace \
+mkosi --debug --debug-workspace \
 --force \
 -I mkosi-s32g2.conf \
 -E REDPESK_DISTRO=batz-2.0-update \
