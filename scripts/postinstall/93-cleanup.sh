@@ -5,11 +5,14 @@
 echo "import gpg keys"
 rpm --installroot="$BUILDROOT" --import $BUILDROOT/etc/pki/rpm-gpg/RPM-GPG-KEY*
 
-# Build image date in /etc/os-release
-echo "BUILD_DATE=\"$(TZ='UTC+2' date '+%Y-%m-%d %H:%M:%S')\"" >> $BUILDROOT/etc/os-release
-
 # clean image installation cache
 rm -rf $BUILDROOT/var/cache
+
+# clean image installation logs
+rm -rf $BUILDROOT/var/log/*
+
+# clean dev/null created (by a package)?
+rm -rf $BUILDROOT/dev/
 
 # Extract buildroot SMACK labels (install the required package) only if SMACK labelling is supported at the build host
 # for now, not possible because the apps aren't installed in the rootfs cpio:
@@ -50,8 +53,8 @@ rm -f $BUILDROOT/usr/lib/systemd/system/systemd-logind.service
 # remove random seed, the newly installed instance should make it's own
 rm -f $BUILDROOT/var/lib/systemd/random-seed
 
-# -- CLEANUP not needed for development -- #
 [ -z "$DEV_PKGS" ] &&
-	# Note that running rpm recreates the rpm db files which aren't needed for build
-    rm -f $BUILDROOT/var/lib/rpm/*
-	exit 0
+    exit 0
+
+# Build image date in /etc/os-release
+echo "BUILD_DATE=\"$(TZ='UTC+2' date '+%Y-%m-%d %H:%M:%S')\"" >> $BUILDROOT/etc/os-release
